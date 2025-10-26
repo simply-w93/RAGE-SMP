@@ -1,47 +1,55 @@
 /* --- Google Font Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap');
 
 /* --- General Theme & Variables --- */
 :root {
-    --bg-color: #1a1a1a; /* Very dark grey */
-    --surface-color: #2c2c2c; /* Slightly lighter grey for cards */
     --primary-color: #e04b4b; /* "Rage" Red */
     --text-color: #f0f0f0;
-    --border-color: #444;
+    --border-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white for glass effect */
     --minecraft-font: 'Press Start 2P', cursive;
-    --body-font: 'Roboto', sans-serif;
+    --body-font: 'Poppins', sans-serif; /* A more modern, stylish font */
 }
 
 body {
-    background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--body-font);
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.7;
+
+    /* --- 1) THE NEW BACKGROUND --- */
+    /* This sets a high-quality image as a fixed background */
+    background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover; /* Cover the entire page */
+    background-attachment: fixed; /* The background stays in place on scroll */
+    background-position: center;
 }
 
-/* --- 1) Minecraft Font on Headlines ONLY --- */
-h1, h2, h3, .nav-brand {
-    font-family: var(--minecraft-font);
-    color: var(--primary-color);
-    text-shadow: 2px 2px #000;
-}
-
-h1 { font-size: 2.5em; }
-h2 { font-size: 1.8em; margin-top: 40px; }
-p { font-size: 1.1em; }
-
-/* --- Navigation Bar --- */
+/* --- 2) MODERN "GLASS" NAVIGATION BAR --- */
 nav {
-    background-color: var(--surface-color);
-    border-bottom: 3px solid var(--primary-color);
     padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    
+    /* The Glass Effect */
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+    backdrop-filter: blur(10px); /* This creates the "frosted glass" blur */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .nav-brand {
+    font-family: var(--minecraft-font);
+    color: var(--primary-color);
+    text-shadow: 2px 2px #000;
     font-size: 1.5em;
     text-decoration: none;
 }
@@ -51,41 +59,86 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 25px;
+    gap: 30px;
 }
 
 nav a {
     color: var(--text-color);
     text-decoration: none;
     font-size: 1.1em;
+    font-weight: 600;
     padding-bottom: 5px;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.3s;
+    position: relative; /* For the animated underline */
 }
 
-nav a:hover, nav a.active {
-    border-bottom-color: var(--primary-color);
+/* Cool animated underline for nav links */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
 }
 
-/* --- General Layout & Header --- */
+nav a:hover::after, nav a.active::after {
+    width: 100%;
+}
+
+
+/* --- HERO SECTION (for the homepage) --- */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 80vh; /* Takes up 80% of the viewport height */
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 0.2em;
+    color: #fff; /* White for better contrast on the background */
+    text-shadow: 4px 4px #000;
+}
+
+.hero .subtitle {
+    font-size: 1.3em;
+    font-weight: 400;
+    color: #ddd;
+}
+
+/* --- General Content Layout --- */
 .container {
     max-width: 1000px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-.main-header {
-    text-align: center;
-    padding: 60px 20px;
-    border-bottom: 2px solid var(--border-color);
+/* --- 3) MODERN "GLASS" CONTENT CARDS --- */
+.content-card {
+    /* The Glass Effect */
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* Rounded corners for a modern feel */
+    padding: 30px;
+    margin-top: 20px;
 }
 
-.main-header .subtitle {
-    font-size: 1.2em;
-    color: #ccc;
+h1, h2 {
+    font-family: var(--minecraft-font);
+    color: var(--primary-color);
+    text-shadow: 2px 2px #000;
 }
 
-/* --- Buttons --- */
+/* --- Modern Buttons --- */
 .btn {
     display: inline-block;
     background-color: var(--primary-color);
@@ -94,72 +147,25 @@ nav a:hover, nav a.active {
     font-size: 1em;
     text-decoration: none;
     padding: 15px 30px;
-    border: 3px solid #a03131;
-    box-shadow: 4px 4px 0 #000;
-    transition: transform 0.1s, box-shadow 0.1s;
+    border: none;
+    border-radius: 5px; /* Slightly rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, background-color 0.2s ease;
     margin-top: 20px;
 }
 
 .btn:hover {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #000;
+    transform: translateY(-3px); /* Lifts the button up slightly */
+    background-color: #ff6b6b; /* Brighter red on hover */
 }
 
-/* --- Tables (For Rage System) --- */
-.rage-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 30px;
-}
-
-.rage-table th, .rage-table td {
-    border: 2px solid var(--border-color);
-    padding: 12px;
-    text-align: center;
-}
-
-.rage-table th {
-    background-color: var(--primary-color);
-    font-family: var(--minecraft-font);
-    font-size: 0.9em;
-    color: #fff;
-}
-
-.rage-table tr:nth-child(even) {
-    background-color: var(--surface-color);
-}
-
-/* --- Ability Cards --- */
-.abilities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.ability-card {
-    background-color: var(--surface-color);
-    border: 2px solid var(--border-color);
-    padding: 20px;
-}
-
-.ability-card h3 {
-    margin-top: 0;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-}
-
-.ability-meta {
-    font-size: 0.9em;
-    color: #aaa;
-    margin-bottom: 15px;
-}
-
-/* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-    border-top: 1px solid var(--border-color);
-    color: #888;
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
 }
