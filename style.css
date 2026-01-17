@@ -8,6 +8,19 @@
     --border-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white for glass effect */
     --minecraft-font: 'Press Start 2P', cursive;
     --body-font: 'Poppins', sans-serif; /* A more modern, stylish font */
+
+    background-image: url('https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fblack-background&ved=0CBYQjRxqFwoTCNjXsrj9kZIDFQAAAAAdAAAAABAH&opi=89978449');
+
+
+    background-size: cover; /* Cover the entire page */
+
+
+    background-attachment: fixed; /* The background stays in place on scroll */
+
+
+    background-position: center;
+
+
 }
 
 body {
